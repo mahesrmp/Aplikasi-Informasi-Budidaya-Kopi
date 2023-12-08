@@ -2,7 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class ProsesBudidayaPage extends StatelessWidget {
+class SuccessLoginPage extends StatelessWidget {
+  final int userId;
+
+  SuccessLoginPage({required this.userId});
+
   final List<String> categories = [
     'Budidaya',
     'Panen',
@@ -10,7 +14,8 @@ class ProsesBudidayaPage extends StatelessWidget {
     'Penjualan',
     'Kedai Kopi',
     'Komunitas Petani',
-    'Login',
+    'Pengajuan',
+    'Logout',
   ];
 
   @override
@@ -36,10 +41,11 @@ class ProsesBudidayaPage extends StatelessWidget {
                         // Navigasi ke InformationPage saat kategori 'Budidaya' dipilih
                         if (category == 'Budidaya') {
                           Navigator.pushReplacementNamed(context, '/budidaya');
-                        }else if(category == 'Panen'){
+                        } else if (category == 'Panen') {
                           Navigator.pushReplacementNamed(context, '/panen');
-                        }else if(category == 'Login'){
-                          Navigator.pushReplacementNamed(context, '/login');
+                        } else if (category == 'Pengajuan') {
+                          Navigator.pushReplacementNamed(
+                              context, '/addpengajuan');
                         }
                       },
                       child: Text(category),
