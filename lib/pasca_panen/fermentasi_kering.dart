@@ -7,7 +7,7 @@ import 'detail_fermentasi_kering.dart';
 
 class FermentasiKeringPage extends StatelessWidget {
   final String apiUrl =
-      "http://127.0.0.1:8000/api/pasca_panen/fermentasi_kering";
+      "http://127.0.0.1:8000/api/pasca/fermentasi_kering";
 
   Future<List<dynamic>> _fecthDataUsers() async {
     var result = await http.get(Uri.parse(apiUrl));

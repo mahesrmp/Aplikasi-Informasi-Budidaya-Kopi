@@ -6,11 +6,14 @@ import 'login.dart';
 import 'penjualan_page.dart';
 import 'kedai_kopi/kedai_kopi.dart';
 import 'komunitas_petani.dart';
+import 'tambah_pengajuan_page.dart';
+import 'auth_manager_page.dart';
 
 class SuccessPage extends StatelessWidget {
-  final User user;
+  final int user;
 
   SuccessPage({required this.user});
+  String? username= AuthManager.getUsername();
 
   void logout(BuildContext context) {
     // Tambahkan logika logout di sini, seperti membersihkan data pengguna, kembali ke halaman login, dll.
@@ -82,7 +85,7 @@ class SuccessPage extends StatelessWidget {
                 color: Color(0xFF65451F),
               ),
               child: Text(
-                'Welcome ${user.username}',
+                'Welcome ${username}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -146,6 +149,16 @@ class SuccessPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => KomunitasPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.arrow_forward),
+              title: Text('Pengajuan'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TambahPengajuanPage()),
                 );
               },
             ),

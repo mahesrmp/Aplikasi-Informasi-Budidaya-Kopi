@@ -2,8 +2,8 @@
 
 
 import 'package:belajar_flutter/hama/hama_page.dart';
-import 'package:belajar_flutter/panen/ciri_buah_kopi.dart';
-import 'package:belajar_flutter/panen/pemetikan.page.dart';
+import 'package:belajar_flutter/panen/ciri_buah_kopi_page.dart';
+import 'package:belajar_flutter/panen/pemetikan_page.dart';
 import 'package:belajar_flutter/pasca_panen/fermentasi_kering.dart';
 import 'package:belajar_flutter/pasca_panen/fermentasi_mekanis.dart';
 import 'package:belajar_flutter/pemangkasan/pemangkasan.dart';
@@ -28,6 +28,7 @@ import 'login_page.dart';
 import 'success_login_page.dart';
 import 'pengajuan_page.dart';
 import 'tambah_pengajuan_page.dart';
+import 'after_login.dart';
 
 
 void main() {
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         // '/': (context) =>
         //     InformationPage(), // Tambahkan rute untuk InformationPage
         '/home': (context) => SuccessLoginPage(userId: AuthManager.userId!),
+        '/after_login': (context) => SuccessPage(user: AuthManager.userId!),
         '/budidaya': (context) => InformationPage(),
         '/syarat_tumbuh': (context) => SyaratTumbuhPage(),
         '/pola_tanam': (context) => PolaTanamPage(),
