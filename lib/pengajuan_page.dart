@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
-import 'status_pengajuan_page.dart';
+import 'tambah_pengajuan_page.dart';
 import 'auth_manager_page.dart';
 
 class PengajuanPage extends StatefulWidget {
@@ -53,7 +53,7 @@ class _PengajuanPageState extends State<PengajuanPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => StatusPengajuanPage(),
+            builder: (context) => TambahPengajuanPage(),
           ),
         );
       } else {

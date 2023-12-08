@@ -13,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   int userId = 1;
+  String username = "";
 
   Future<void> _login() async {
     final String apiUrl = "http://127.0.0.1:8000/api/login";
@@ -33,11 +34,12 @@ class _LoginPageState extends State<LoginPage> {
       final Map<String, dynamic> data = jsonDecode(response.body);
       setState(() {
         userId = data['data']['id'];
+        username = data['data']['username'];
       });
 
-      AuthManager.login(userId);
+      AuthManager.login(userId, username);
       print("Login berhasil. User ID: $userId");
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/after_login');
     } else {
       // Gagal login, Anda dapat menanggapi hasilnya di sini.
       print("Login gagal");
