@@ -2,7 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class ProsesBudidayaPage extends StatelessWidget {
+class SuccessLoginPage extends StatelessWidget {
+  final int userId;
+
+  SuccessLoginPage({required this.userId});
+
   final List<String> categories = [
     'Budidaya',
     'Panen',
@@ -10,7 +14,8 @@ class ProsesBudidayaPage extends StatelessWidget {
     'Penjualan',
     'Kedai Kopi',
     'Komunitas Petani',
-    'Login',
+    'Pengajuan',
+    'Logout',
   ];
 
   @override
@@ -18,7 +23,6 @@ class ProsesBudidayaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Proses Budidaya'),
-        backgroundColor: Color(0xFF65451F),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -39,8 +43,9 @@ class ProsesBudidayaPage extends StatelessWidget {
                           Navigator.pushReplacementNamed(context, '/budidaya');
                         } else if (category == 'Panen') {
                           Navigator.pushReplacementNamed(context, '/panen');
-                        }else if(category == 'Login'){
-                          Navigator.pushReplacementNamed(context, '/login');
+                        } else if (category == 'Pengajuan') {
+                          Navigator.pushReplacementNamed(
+                              context, '/addpengajuan');
                         }
                       },
                       child: Text(category),
