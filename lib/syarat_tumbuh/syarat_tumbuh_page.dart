@@ -18,47 +18,73 @@ class SyaratTumbuhPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Syarat Tumbuh'),
+        backgroundColor: Color(0xFF65451F),
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: _fecthDataUsers(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return Align(
-              alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: List.generate(
-                    snapshot.data.length,
-                    (index) {
-                      var data = snapshot.data[index];
-                      var tahapan = data['tahapan'];
+      // Tambahkan background image
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/images/background.png'), // Ganti dengan path gambar yang diinginkan
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: FutureBuilder<List<dynamic>>(
+          future: _fecthDataUsers(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: List.generate(
+                      snapshot.data.length,
+                      (index) {
+                        var data = snapshot.data[index];
+                        var tahapan = data['tahapan'];
 
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => DetailPage(data: data),
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailPage(data: data),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF8E745C), // Warna tombol
+                                alignment: Alignment.centerLeft, // Rata kiri
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  tahapan,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white, // Warna teks putih
+                                  ),
                                 ),
-                              );
-                            },
-                            child: Text(tahapan),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
     );
   }

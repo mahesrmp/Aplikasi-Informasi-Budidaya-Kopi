@@ -1,12 +1,12 @@
-// pola_tanam_page.dart
+// ciri_kopi_page.dart
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'detail_pola_tanam_page.dart';
+import 'detail_ciri_buah_kopi_page.dart';
 
-class PolaTanamPage extends StatelessWidget {
-  final String apiUrl = "http://127.0.0.1:8000/api/budidaya/pola_tanam";
+class CiriKopiPage extends StatelessWidget {
+  final String apiUrl = "http://127.0.0.1:8000/api/panen/ciri_buah_kopi";
 
   Future<List<dynamic>> _fecthDataUsers() async {
     var result = await http.get(Uri.parse(apiUrl));
@@ -17,7 +17,7 @@ class PolaTanamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pola Tanam'),
+        title: Text('Ciri Buah Kopi'),
         backgroundColor: Color(0xFF65451F),
       ),
       // Tambahkan background image
@@ -54,7 +54,7 @@ class PolaTanamPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        DetailPolaTanamPage(data: data),
+                                        DetailCiriBuahKopiPage(data: data),
                                   ),
                                 );
                               },

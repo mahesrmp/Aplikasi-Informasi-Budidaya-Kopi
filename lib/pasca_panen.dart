@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class PanenPage extends StatelessWidget {
+class PascaPanenPage extends StatelessWidget {
   final List<String> categories = [
-    'Ciri Buah Kopi',
-    'Pemetikan',
+    'Fermentasi Kering',
+    'Fermentasi Mekanis',
   ];
 
   @override
@@ -40,14 +40,16 @@ class PanenPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Panen',
+                'Pasca Panen',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Warna teks Judul Panen
+                  color: Colors.black, // Warna teks Judul Pasca Panen
                 ),
               ),
             ),
+            SizedBox(height: 20), // Spasi antara judul dan tombol kategori
+
             ...List.generate(
               categories.length,
               (index) {
@@ -63,10 +65,10 @@ class PanenPage extends StatelessWidget {
                       ),
                       onPressed: () {
                         // Navigasi ke halaman yang sesuai berdasarkan kategori
-                        if (category == 'Ciri Buah Kopi') {
-                          Navigator.pushNamed(context, '/ciri_buah_kopi');
-                        } else if (category == 'Pemetikan') {
-                          Navigator.pushNamed(context, '/pemetikan');
+                        if (category == 'Fermentasi Kering') {
+                          Navigator.pushNamed(context, '/fermentasi_kering');
+                        } else if (category == 'Fermentasi Mekanis') {
+                          Navigator.pushNamed(context, '/fermentasi_mekanis');
                         } else {
                           // Tambahkan navigasi ke halaman lain jika diperlukan
                         }
