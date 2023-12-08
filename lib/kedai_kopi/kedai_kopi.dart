@@ -1,12 +1,12 @@
-// pola_tanam_page.dart
+// syarat_tumbuh_page.dart
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'detail_pola_tanam_page.dart';
+import 'detail_kedai_kopi.dart';
 
-class PolaTanamPage extends StatelessWidget {
-  final String apiUrl = "http://127.0.0.1:8000/api/budidaya/pola_tanam";
+class KedaiKopiPage extends StatelessWidget {
+  final String apiUrl = "http://127.0.0.1:8000/api/kedai";
 
   Future<List<dynamic>> _fecthDataUsers() async {
     var result = await http.get(Uri.parse(apiUrl));
@@ -17,7 +17,7 @@ class PolaTanamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pola Tanam'),
+        title: Text('Kedai Kopi'),
         backgroundColor: Color(0xFF65451F),
       ),
       // Tambahkan background image
@@ -42,11 +42,11 @@ class PolaTanamPage extends StatelessWidget {
                       snapshot.data.length,
                       (index) {
                         var data = snapshot.data[index];
-                        var tahapan = data['tahapan'];
+                        var nama_kedai = data['nama_kedai'];
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
+                          child: SizedBox( 
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
@@ -54,7 +54,7 @@ class PolaTanamPage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        DetailPolaTanamPage(data: data),
+                                        DetailKedaiKopiPage(data: data),
                                   ),
                                 );
                               },
@@ -65,7 +65,7 @@ class PolaTanamPage extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  tahapan,
+                                  nama_kedai,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     color: Colors.white, // Warna teks putih

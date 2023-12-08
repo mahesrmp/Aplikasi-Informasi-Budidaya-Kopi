@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class DetailPemetikanPage extends StatelessWidget {
+class DetailHamaPage extends StatelessWidget {
   final dynamic data;
 
-  DetailPemetikanPage({required this.data});
+  DetailHamaPage({required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ class DetailPemetikanPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(tahapan),
+        backgroundColor: Color(0xFF65451F),
       ),
       body: SingleChildScrollView(
         child: Padding(

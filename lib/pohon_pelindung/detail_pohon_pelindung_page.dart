@@ -20,6 +20,7 @@ class DetailPohonPelindungPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(tahapan),
+        backgroundColor: Color(0xFF65451F),
       ),
       body: SingleChildScrollView(
         child: Padding(

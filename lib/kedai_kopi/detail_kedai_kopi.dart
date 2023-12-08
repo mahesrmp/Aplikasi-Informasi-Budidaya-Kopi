@@ -2,28 +2,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailKedaiKopiPage extends StatelessWidget {
   final dynamic data;
 
-  DetailPage({required this.data});
+  DetailKedaiKopiPage({required this.data});
 
   @override
   Widget build(BuildContext context) {
-    var tahapan = data['tahapan'];
-    var deskripsi = data['deskripsi'];
-    var link = data['link'];
-    var sumberArtikel = data['sumber_artikel'];
-    var creditGambar = data['credit_gambar'];
+    var nama_kedai = data['nama_kedai'];
+    var alamat = data['alamat'];
+    var jam_buka = data['jam_buka'];
+    var jam_tutup = data['jam_tutup'];
+    var hari_buka = data['hari_buka'];
+    var hari_tutup = data['hari_tutup'];
+    var no_telp = data['no_telp'];
+    var credit_gambar = data['credit_gambar'];
     var imageUrls = List<String>.from(
       data['images'].map((image) => image['url']),
     );
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(tahapan),
+        title: Text(nama_kedai),
         backgroundColor: Color(0xFF65451F),
       ),
       body: SingleChildScrollView(
@@ -41,13 +42,13 @@ class DetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        tahapan,
+                        nama_kedai,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text('Deskripsi: $deskripsi'),
+                      Text('Deskripsi: $alamat'),
                     ],
                   ),
                 ),
@@ -60,7 +61,15 @@ class DetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Sumber Artikel: $sumberArtikel'),
+                      Text('$nama_kedai beroperasi pada:'),
+
+                      // Informasi tambahan di dalam card
+                      SizedBox(height: 8),
+                      Text('$hari_buka - $hari_tutup'),
+                      SizedBox(height: 8),
+                      Text('$jam_buka - $jam_tutup'),
+                      SizedBox(height: 12),
+                      Text('$no_telp - $no_telp'),
                     ],
                   ),
                 ),
@@ -171,32 +180,7 @@ class DetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Credit Gambar: $creditGambar'),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Link:'),
-                      GestureDetector(
-                        onTap: () {
-                          _launchYouTubeLink(link);
-                        },
-                        child: Text(
-                          link,
-                          style: TextStyle(
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
+                      Text('Credit Gambar: $credit_gambar'),
                     ],
                   ),
                 ),
@@ -208,16 +192,5 @@ class DetailPage extends StatelessWidget {
       ),
     );
   }
-} // Fungsi untuk membuka tautan YouTube di aplikasi YouTube atau browser
-
-void _launchYouTubeLink(String url) async {
-  try {
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false);
-    } else {
-      throw 'Could not launch $url';
-    }
-  } catch (e) {
-    print("Error: $e");
-  }
 }
+

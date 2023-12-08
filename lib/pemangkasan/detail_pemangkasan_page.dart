@@ -1,12 +1,10 @@
-// detail_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class DetailPolaTanamPage extends StatelessWidget {
+class DetailPemangkasanPage extends StatelessWidget {
   final dynamic data;
 
-  DetailPolaTanamPage({required this.data});
+  DetailPemangkasanPage({required this.data});
 
   @override
   Widget build(BuildContext context) {

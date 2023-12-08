@@ -18,6 +18,7 @@ class ProsesBudidayaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Proses Budidaya'),
+        backgroundColor: Color(0xFF65451F),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -36,7 +37,7 @@ class ProsesBudidayaPage extends StatelessWidget {
                         // Navigasi ke InformationPage saat kategori 'Budidaya' dipilih
                         if (category == 'Budidaya') {
                           Navigator.pushReplacementNamed(context, '/budidaya');
-                        }else if(category == 'Panen'){
+                        } else if (category == 'Panen') {
                           Navigator.pushReplacementNamed(context, '/panen');
                         }else if(category == 'Login'){
                           Navigator.pushReplacementNamed(context, '/login');
