@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class DetailPohonPelindungPage extends StatelessWidget {
@@ -28,99 +29,193 @@ class DetailPohonPelindungPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                tahapan,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(vertical: 8),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tahapan,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text('Deskripsi: $deskripsi'),
+                    ],
+                  ),
                 ),
               ),
-              Text('Deskripsi: $deskripsi'),
-              Text('Sumber Artikel: $sumberArtikel'),
-              if (imageUrls.length > 2)
-                CarouselSlider.builder(
-                  itemCount: (imageUrls.length / 2).ceil(),
-                  options: CarouselOptions(
-                    height: 150.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    viewportFraction: 0.8,
+              Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(vertical: 8),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Sumber Artikel: $sumberArtikel'),
+                    ],
                   ),
-                  itemBuilder: (BuildContext context, int carouselIndex,
-                      int carouselInnerIndex) {
-                    int firstImageIndex = carouselIndex * 2;
-                    int secondImageIndex = firstImageIndex + 1;
+                ),
+              ),
+              if (imageUrls.length > 2)
+                Card(
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CarouselSlider.builder(
+                      itemCount: (imageUrls.length / 2).ceil(),
+                      options: CarouselOptions(
+                        height: 150.0,
+                        enlargeCenterPage: true,
+                        autoPlay: true,
+                        aspectRatio: 16 / 9,
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: true,
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        viewportFraction: 0.8,
+                      ),
+                      itemBuilder: (BuildContext context, int carouselIndex,
+                          int carouselInnerIndex) {
+                        int firstImageIndex = carouselIndex * 2;
+                        int secondImageIndex = firstImageIndex + 1;
 
-                    if (secondImageIndex < imageUrls.length) {
-                      // Jika ada dua gambar
-                      return Row(
-                        children: [
-                          Expanded(
-                            child: Image.network(
-                              imageUrls[firstImageIndex],
-                              height: 150,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: Image.network(
-                              imageUrls[secondImageIndex],
-                              height: 150,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      );
-                    } else {
-                      // Jika tinggal satu gambar, tampilkan secara penuh
-                      return Image.network(
-                        imageUrls[firstImageIndex],
-                        height: 150,
-                        width: double.infinity,
-                        fit: BoxFit.contain,
-                      );
-                    }
-                  },
+                        if (secondImageIndex < imageUrls.length) {
+                          // Jika ada dua gambar
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: Image.network(
+                                  imageUrls[firstImageIndex],
+                                  height: 150,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Image.network(
+                                  imageUrls[secondImageIndex],
+                                  height: 150,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ],
+                          );
+                        } else {
+                          // Jika tinggal satu gambar, tampilkan secara penuh
+                          return Image.network(
+                            imageUrls[firstImageIndex],
+                            height: 150,
+                            width: double.infinity,
+                            fit: BoxFit.contain,
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 )
               else if (imageUrls.length == 2)
-                Row(
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        imageUrls.length > 0 ? imageUrls[0] : '',
-                        height: 150,
-                        fit: BoxFit.contain,
-                      ),
+                Card(
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Image.network(
+                            imageUrls.length > 0 ? imageUrls[0] : '',
+                            height: 150,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Expanded(
+                          child: Image.network(
+                            imageUrls.length > 1 ? imageUrls[1] : '',
+                            height: 150,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: Image.network(
-                        imageUrls.length > 1 ? imageUrls[1] : '',
-                        height: 150,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ],
+                  ),
                 )
               else if (imageUrls.length == 1)
-                Image.network(
-                  imageUrls[0],
-                  height: 150,
-                  width: double.infinity,
-                  fit: BoxFit.contain,
+                Card(
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Image.network(
+                      imageUrls[0],
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-              Text('Credit Gambar: $creditGambar'),
-              Text('Link: $link'),
+              Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(vertical: 8),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Credit Gambar: $creditGambar'),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(vertical: 8),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Link:'),
+                      GestureDetector(
+                        onTap: () {
+                          _launchYouTubeLink(link);
+                        },
+                        child: Text(
+                          link,
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               Divider(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  // Fungsi untuk membuka tautan YouTube di aplikasi YouTube atau browser
+  void _launchYouTubeLink(String url) async {
+    try {
+      if (await canLaunch(url)) {
+        await launch(url, forceSafariVC: false);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
   }
 }
