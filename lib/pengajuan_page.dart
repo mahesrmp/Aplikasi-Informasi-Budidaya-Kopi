@@ -92,56 +92,89 @@ class _PengajuanPageState extends State<PengajuanPage> {
       appBar: AppBar(
         title: Text('Pengajuan Page'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                await pickImage('foto_ktp');
-              },
-              child: Text('Pilih Foto KTP'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                await pickImage('foto_selfie');
-              },
-              child: Text('Pilih Foto Selfie'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                await pickImage('foto_sertifikat');
-              },
-              child: Text('Pilih Foto Sertifikat'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              controller: deskripsiController,
-              decoration: InputDecoration(
-                labelText: 'Deskripsi Pengalaman',
-                border: OutlineInputBorder(),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/images/background.png'), // Ganti dengan path gambar latar belakang Anda
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  await pickImage('foto_ktp');
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF8E745C), // Warna latar tombol
+                ),
+                child: Text(
+                  'Pilih Foto KTP',
+                  style: TextStyle(color: Colors.white), // Warna teks tombol
+                ),
               ),
-              maxLines: 3,
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                int? userId = await getUserId();
-                if (userId != null) {
-                  submitPengajuan(
-                    fotoKTP: fotoKTPPath,
-                    fotoSelfie: fotoSelfiePath,
-                    deskripsiPengalaman: deskripsiController.text,
-                    fotoSertifikat: fotoSertifikatPath,
-                    userId: userId,
-                  );
-                }
-              },
-              child: Text('Submit Pengajuan'),
-            ),
-          ],
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  await pickImage('foto_selfie');
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF8E745C),
+                ),
+                child: Text(
+                  'Pilih Foto Selfie',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  await pickImage('foto_sertifikat');
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF8E745C),
+                ),
+                child: Text(
+                  'Pilih Foto Sertifikat',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: deskripsiController,
+                decoration: InputDecoration(
+                  labelText: 'Deskripsi Pengalaman',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  int? userId = await getUserId();
+                  if (userId != null) {
+                    submitPengajuan(
+                      fotoKTP: fotoKTPPath,
+                      fotoSelfie: fotoSelfiePath,
+                      deskripsiPengalaman: deskripsiController.text,
+                      fotoSertifikat: fotoSertifikatPath,
+                      userId: userId,
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF8E745C),
+                ),
+                child: Text(
+                  'Submit Pengajuan',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

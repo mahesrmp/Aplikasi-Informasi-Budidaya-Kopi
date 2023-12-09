@@ -42,7 +42,7 @@ class CiriKopiPage extends StatelessWidget {
                       snapshot.data.length,
                       (index) {
                         var data = snapshot.data[index];
-                        var tahapan = data['tahapan'];
+                        var tahapan = data['kategori'];
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),

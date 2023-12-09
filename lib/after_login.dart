@@ -13,7 +13,7 @@ class SuccessPage extends StatelessWidget {
   final int user;
 
   SuccessPage({required this.user});
-  String? username= AuthManager.getUsername();
+  String? username = AuthManager.getUsername();
 
   void logout(BuildContext context) {
     // Tambahkan logika logout di sini, seperti membersihkan data pengguna, kembali ke halaman login, dll.
@@ -64,11 +64,17 @@ class SuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Markopi'),
+        title: Text(
+          'Markopi',
+          style: TextStyle(
+            color: Colors.white, // Warna teks di AppBar
+          ),
+        ),
         backgroundColor: Color(0xFF65451F),
         leading: Builder(
           builder: (context) => IconButton(
             icon: Icon(Icons.menu),
+            color: Colors.white,
             onPressed: () {
               // Buka drawer saat ikon menu diklik
               Scaffold.of(context).openDrawer();
@@ -158,7 +164,8 @@ class SuccessPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TambahPengajuanPage()),
+                  MaterialPageRoute(
+                      builder: (context) => TambahPengajuanPage()),
                 );
               },
             ),

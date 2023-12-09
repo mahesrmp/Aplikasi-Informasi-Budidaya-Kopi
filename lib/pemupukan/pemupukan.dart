@@ -1,5 +1,3 @@
-// pemupukan_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -46,10 +44,18 @@ class PemupukanPage extends StatelessWidget {
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
+                          child: Card(
+                            elevation: 5,
+                            color: Color(0xFF8E745C), // Warna card
+                            child: ListTile(
+                              title: Text(
+                                tahapan,
+                                style: TextStyle(
+                                  color: Colors.white, // Warna teks putih
+                                  fontSize: 18,
+                                ),
+                              ),
+                              onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -58,20 +64,6 @@ class PemupukanPage extends StatelessWidget {
                                   ),
                                 );
                               },
-                              style: ElevatedButton.styleFrom(
-                                primary: Color(0xFF8E745C), // Warna tombol
-                                alignment: Alignment.centerLeft, // Rata kiri
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  tahapan,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.white, // Warna teks putih
-                                  ),
-                                ),
-                              ),
                             ),
                           ),
                         );

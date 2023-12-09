@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'detail_hama_page.dart';
 
 class HamaPage extends StatelessWidget {
-  final String apiUrl = "http://127.0.0.1:8000/api/budidaya/hama_dan_penyakit";
+  final String apiUrl = "http://127.0.0.1:8000/api/budidaya/hama_penyakit";
 
   Future<List<dynamic>> _fecthDataUsers() async {
     var result = await http.get(Uri.parse(apiUrl));

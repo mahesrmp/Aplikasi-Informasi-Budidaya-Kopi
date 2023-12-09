@@ -39,63 +39,90 @@ class _TambahPengajuanPageState extends State<TambahPengajuanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tambah Pengajuan'),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+              'assets/images/background.png'), // Ganti dengan path ke gambar latar belakang
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Visibility(
-              visible: data.isEmpty || data[0]['status'] == '2', // Tampilkan jika status 0 atau 2
-              child: ElevatedButton(
-                onPressed: () {
-                  // Mengarahkan ke halaman PengajuanPage
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PengajuanPage()),
-                  );
-                },
-                child: Text('Tambah Pengajuan'), // Mengganti teks tombol
-              ),
-            ),
-            SizedBox(height: 20),
-            Text('Data from API:'),
-            SizedBox(height: 10),
-            if (data.isEmpty)
-              Text('No data available')
-            else
-              Column(
-                children: data.map((item) {
-                  return ListTile(
-                    title: Text('Status: ${item['status']}'),
-                    subtitle: Text(
-                        'ID: ${item['id']} - Petani ID: ${item['petani_id']}'),
-                    trailing: ElevatedButton(
-                      onPressed: () {
-                        // Tambahkan logika untuk tindakan sesuai dengan status
-                        if (item['status'] == '0') {
-                          // Tindakan ketika status = 0 (Menunggu)
-                          print('Menunggu');
-                        } else if (item['status'] == '1') {
-                          // Tindakan ketika status = 1 (Diterima)
-                          print('Diterima');
-                        } else if (item['status'] == '2') {
-                          // Tindakan ketika status = 2 (Ditolak)
-                          print('Ditolak');
-                        }
-                      },
-                      child: Text(
-                        item['status'] == '0'
-                            ? 'Menunggu'
-                            : (item['status'] == '1' ? 'Diterima' : 'Ditolak'),
-                      ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Tambah Pengajuan'),
+        ),
+        backgroundColor:
+            Colors.transparent, // Atur warna background menjadi transparan
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Visibility(
+                visible: data.isEmpty ||
+                    data[0]['status'] == '2', // Tampilkan jika status 0 atau 2
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Mengarahkan ke halaman PengajuanPage
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PengajuanPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF8E745C), // Atur warna tombol pengajuan
+                  ),
+                  child: Text(
+                    'Tambah Pengajuan',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.white, // Warna teks putih
                     ),
-                  );
-                }).toList(),
+                  ), // Mengganti teks tombol
+                ),
               ),
-          ],
+              SizedBox(height: 20),
+              Text('Data from API:'),
+              SizedBox(height: 10),
+              if (data.isEmpty)
+                Text('No data available')
+              else
+                Column(
+                  children: data.map((item) {
+                    return ListTile(
+                      title: Text('Status: ${item['status']}'),
+                      subtitle: Text(
+                          'ID: ${item['id']} - Petani ID: ${item['petani_id']}'),
+                      trailing: ElevatedButton(
+                        onPressed: () {
+                          // Tambahkan logika untuk tindakan sesuai dengan status
+                          if (item['status'] == '0') {
+                            // Tindakan ketika status = 0 (Menunggu)
+                            print('Menunggu');
+                          } else if (item['status'] == '1') {
+                            // Tindakan ketika status = 1 (Diterima)
+                            print('Diterima');
+                          } else if (item['status'] == '2') {
+                            // Tindakan ketika status = 2 (Ditolak)
+                            print('Ditolak');
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary:
+                              Color(0xFF8E745C), // Atur warna tombol status
+                        ),
+                        child: Text(
+                          item['status'] == '0'
+                              ? 'Menunggu'
+                              : (item['status'] == '1'
+                                  ? 'Diterima'
+                                  : 'Ditolak'),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+            ],
+          ),
         ),
       ),
     );
