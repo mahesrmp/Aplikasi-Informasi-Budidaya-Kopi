@@ -96,16 +96,16 @@ class MainScreen extends StatelessWidget {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.arrow_forward),
-              title: Text('Komunitas Petani'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => KomunitasPage()),
-                );
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.arrow_forward),
+            //   title: Text('Komunitas Petani'),
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => KomunitasPage()),
+            //     );
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.arrow_forward),
               title: Text('Login'),
@@ -198,17 +198,17 @@ class CardGrid extends StatelessWidget {
                   );
                 },
               ),
-              CardItem(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                imagePath: 'assets/images/6.png',
-                caption: 'Komunitas Petani',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => KomunitasPage()),
-                  );
-                },
-              ),
+              // CardItem(
+              //   color: const Color.fromARGB(255, 255, 255, 255),
+              //   imagePath: 'assets/images/6.png',
+              //   caption: 'Komunitas Petani',
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => KomunitasPage()),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),
